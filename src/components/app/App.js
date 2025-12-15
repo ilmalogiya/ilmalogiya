@@ -21,7 +21,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/*" element={<MainSection />} />
-        <Route path="/posts/:id" element={<MainSection />} />
+        <Route path="/posts/:slug" element={<MainSection />} />
       </Routes>
       <Footer />
     </div>

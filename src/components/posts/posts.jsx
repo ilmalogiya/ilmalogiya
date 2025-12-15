@@ -9,7 +9,7 @@ const Posts = ({
   selectedTag = "all",
   searchQuery = "",
   handleTagClick,
-  loading=false,
+  loading = false,
 }) => {
   const filteredPosts = useMemo(() => {
     let filtered = allPosts;
@@ -43,6 +43,8 @@ const Posts = ({
         const isVideo = hasFile && /\.(mp4|webm|ogg)$/i.test(post.file);
         const cleanDescription = stripHTML(post.description || "");
 
+        const postLink = post.slug ? `/posts/${post.slug}` : `/posts/${post.id}`;
+
         return (
           <div
             className={`post_item${hasFile ? "" : " post_item--noimg"} shadow-elegant`}
@@ -50,7 +52,7 @@ const Posts = ({
           >
             {hasFile && (
               <div className="post_left">
-                <Link to={`/posts/${post.id}`}>
+                <Link to={postLink}>
                   {isVideo ? (
                     <video muted preload="metadata" playsInline>
                       <source src={post.file} type="video/mp4" />
@@ -82,7 +84,7 @@ const Posts = ({
               </div>
 
               <div className="post_text">
-                <Link to={`/posts/${post.id}`}>
+                <Link to={postLink}>
                   <h1>{post.title}</h1>
                 </Link>
                 <p>
@@ -93,7 +95,7 @@ const Posts = ({
               </div>
 
               <div className="post_link">
-                <Link to={`/posts/${post.id}`}>
+                <Link to={postLink}>
                   To'liq o'qish <FaArrowRightLong />
                 </Link>
               </div>

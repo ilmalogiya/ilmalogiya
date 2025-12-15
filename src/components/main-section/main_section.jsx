@@ -47,7 +47,7 @@ const onLoad = () => {
 };
 
 const MainSection = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -67,7 +67,7 @@ const MainSection = () => {
     post: detailedPost,
     loading: detailLoading,
     error: detailError,
-  } = useGetOneQuery(id);
+  } = useGetOneQuery(slug);
 
   const { randomPost, lastPost, loading, error } = useSidebarData();
 
@@ -96,7 +96,7 @@ const MainSection = () => {
     <section className="main-section">
       <div className="left">
         {/* === Agar id bo‘lsa (ya’ni post detal sahifasi ochilgan bo‘lsa) === */}
-        {id ? (
+        {slug ? (
           detailLoading ? (
             <Loader />
           ) : detailError ? (
