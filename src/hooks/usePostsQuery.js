@@ -16,7 +16,7 @@ export function usePostsQuery(page = 1, search = "", tag = "all") {
         if (search) url += `&search=${encodeURIComponent(search)}`;
         if (tag && tag !== "all") url += `&tag=${encodeURIComponent(tag)}`;
 
-        const res = await fetch(url);
+        const res = await fetch(url); 
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
         const data = await res.json();

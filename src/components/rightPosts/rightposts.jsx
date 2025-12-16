@@ -49,7 +49,7 @@ const RightPosts = ({ randomPost, lastPost }) => {
           </div>
         )}
         <div className="title">
-          <Link to={`/posts/${randomPost.id}`}>
+          <Link to={`/posts/${randomPost.slug}`}>
             <h3>{randomPost.title}</h3>
           </Link>
         </div>
@@ -72,7 +72,7 @@ const RightPosts = ({ randomPost, lastPost }) => {
           </div>
         )}
         <div className="title">
-          <Link to={`/posts/${lastPost.id}`}>
+          <Link to={`/posts/${lastPost.slug}`}>
             <h3>{lastPost.title}</h3>
           </Link>
         </div>
