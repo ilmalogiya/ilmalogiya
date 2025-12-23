@@ -87,15 +87,15 @@ const PostDetail = ({ post }) => {
         {/* Sana va ko'rishlar */}
         <div className="post-date">
           <p className="published">
-            <MdOutlineDateRange /> Joylangan: {formatDateTime(post.publishedDate)}
+            <MdOutlineDateRange /> {formatDateTime(post.publishedDate)}
           </p>
           {post.modifiedDate && new Date(post.publishedDate) < new Date(post.modifiedDate) && (
             <p className="modified">
-              <FaRegEdit /> Yangilangan: {formatDateTime(post.modifiedDate)}
+              <FaRegEdit /> {formatDateTime(post.modifiedDate)}
             </p>
           )}
           <p className="views">
-            <FaRegEye /> {post.views || 0} marta ko'rildi
+            <FaRegEye /> {post.views || 0}
           </p>
         </div>
 
