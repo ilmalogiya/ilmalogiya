@@ -21,6 +21,11 @@ body {
   --lora: 'Lora', serif;
 }
 
+::selection{
+  color: var(--background);
+  background-color: var(--accent);
+}
+
 h1,
 h2,
 h3,
