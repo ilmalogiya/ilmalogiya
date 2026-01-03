@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "uz.afsona_group.ilmalogiya",
+            "sha256_cert_fingerprints": [
+                "80:5B:32:A9:5C:AD:4C:E9:73:9E:38:BB:00:0A:6A:E6:35:5B:D8:94:0D:95:A7:50:7E:67:A8:77:BF:9C:ED:C7"
+            ]
+        }
+    }
+]
