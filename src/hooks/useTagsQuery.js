@@ -14,7 +14,6 @@ export function useTagsQuery() {
         const res = await fetch(`${BASE_URL}/tags/`);
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const data = await res.json();
-        console.log("Tags fetch response:", data);
         setTags(data);
       } catch (err) {
         setError(err.message);

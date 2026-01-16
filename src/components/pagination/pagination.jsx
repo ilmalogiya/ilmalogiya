@@ -1,7 +1,6 @@
 import "./pagination.scss";
 
 const Pagination = ({ pagination, currentPage, onPageChange }) => {
-  // totalPages ni aniq olish
   const totalPages = pagination.totalPages || 
                     (pagination.count ? Math.ceil(pagination.count / 10) : 1);
 
@@ -9,9 +8,6 @@ const Pagination = ({ pagination, currentPage, onPageChange }) => {
     onPageChange(pageNumber);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  // DEBUG
-  console.log("Pagination:", { pagination, totalPages, currentPage });
 
   const getPageNumbers = () => {
     const pages = [];

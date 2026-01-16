@@ -36,9 +36,12 @@ const Posts = ({
     return <h1 className="postloading-message">Hech qanday post topilmadi</h1>;
   }
 
+  const url = process.env.REACT_APP_API_MEDIA_URL;
+
   return (
     <div className="posts">
       {filteredPosts.map((post) => {
+        console.log(post);
         const hasFile = !!post.file;
         const isVideo = hasFile && /\.(mp4|webm|ogg)$/i.test(post.file);
         const cleanDescription = stripHTML(post.description || "");
@@ -55,11 +58,11 @@ const Posts = ({
                 <Link to={postLink}>
                   {isVideo ? (
                     <video muted preload="metadata" playsInline>
-                      <source src={post.file} type="video/mp4" />
+                      <source src={url + post.file} type="video/mp4" />
                     </video>
                   ) : (
                     <img
-                      src={post.file}
+                      src={url + post.file}
                       alt={post.title}
                       loading="lazy"
                     />
