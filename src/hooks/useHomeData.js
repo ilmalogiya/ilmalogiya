@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-export function useHomeData(page = 1) {
+export function useHomeData(page = 1, searchQuery = "", selectedTag = "all") {
   // Barcha turdagi ma'lumotlar uchun state
   const [data, setData] = useState({
     tags: [],
@@ -10,7 +10,8 @@ export function useHomeData(page = 1) {
     randomPost: null,
     latestPost: null,
   });
-  
+
+  const [seed, setSeed] = useState(() => Math.random().toString());
   const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,8 +21,15 @@ export function useHomeData(page = 1) {
       setLoading(true);
       setError(null);
       try {
-        // Siz ko'rsatgan JSON /home/ endpointidan kelayotganini hisobga olsak:
-        let url = `${BASE_URL}/home/?page=${page}`;
+        let url = `${BASE_URL}/home/?page=${page}&seed=${seed}`;
+
+        if (searchQuery) {
+          url += `&search=${encodeURIComponent(searchQuery)}`;
+        }
+
+        if (selectedTag && selectedTag !== "all") {
+          url += `&tag=${encodeURIComponent(selectedTag)}`;
+        }
 
         const res = await fetch(url);
         if (!res.ok) throw new Error(`Xatolik yuz berdi: ${res.status}`);
@@ -53,15 +61,15 @@ export function useHomeData(page = 1) {
     };
 
     fetchHomeData();
-  }, [page]); // Sahifa o'zgarganda qayta chaqiriladi
+  }, [page, seed, searchQuery, selectedTag]); // Parametrlar o'zgarganda qayta chaqiriladi
 
-  return { 
+  return {
     tags: data.tags,
     posts: data.posts,
     randomPost: data.randomPost,
     latestPost: data.latestPost,
-    pagination, 
-    loading, 
-    error 
+    pagination,
+    loading,
+    error
   };
 }

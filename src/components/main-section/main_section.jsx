@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, memo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 // Yangi hookni import qilamiz
-import { useHomeData } from "../../hooks/useHomeData"; 
+import { useHomeData } from "../../hooks/useHomeData";
 import { useGetOneQuery } from "../../hooks/useGetOneQuery";
 import "./main_section.scss";
 import "../rightPosts/rightposts.scss";
@@ -37,15 +37,15 @@ const MainSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState("all");
 
-  const { 
-    tags, 
-    posts, 
-    randomPost, 
-    latestPost,   
-    pagination, 
-    loading: homeLoading, 
-    error: homeError 
-  } = useHomeData(currentPage);
+  const {
+    tags,
+    posts,
+    randomPost,
+    latestPost,
+    pagination,
+    loading: homeLoading,
+    error: homeError
+  } = useHomeData(currentPage, searchQuery, selectedTag);
 
   const {
     post: detailedPost,
@@ -77,10 +77,10 @@ const MainSection = () => {
           detailLoading ? <Loader /> : detailError ? <div className="error">{detailError}</div> : <PostDetail post={detailedPost} />
         ) : (
           <>
-            <MemoizedTags 
-              tags={tags} 
-              selectedTag={selectedTag} 
-              onTagChange={handleTagChange} 
+            <MemoizedTags
+              tags={tags}
+              selectedTag={selectedTag}
+              onTagChange={handleTagChange}
             />
 
             {homeLoading ? (
@@ -89,16 +89,14 @@ const MainSection = () => {
               <h1 className="postloading-message">Hech qanday post topilmadi</h1>
             ) : (
               <>
-                <Posts 
-                  allPosts={posts} 
-                  selectedTag={selectedTag} 
-                  searchQuery={searchQuery} 
-                  handleTagClick={handleTagChange} 
+                <Posts
+                  allPosts={posts}
+                  handleTagClick={handleTagChange}
                 />
-                <Pagination 
-                  pagination={pagination} 
-                  currentPage={currentPage} 
-                  onPageChange={setCurrentPage} 
+                <Pagination
+                  pagination={pagination}
+                  currentPage={currentPage}
+                  onPageChange={setCurrentPage}
                 />
               </>
             )}
@@ -110,9 +108,9 @@ const MainSection = () => {
         {homeLoading ? (
           <div className="text-center py-8">{onLoad()}</div>
         ) : (
-          <MemoizedRightPosts 
-            randomPost={randomPost} 
-            lastPost={latestPost} 
+          <MemoizedRightPosts
+            randomPost={randomPost}
+            lastPost={latestPost}
           />
         )}
       </div>
