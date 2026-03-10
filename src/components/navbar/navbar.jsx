@@ -6,11 +6,9 @@ import SearchBar from "../searchbar/searchbar.jsx";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { useState, useEffect } from "react";
-import { usePostsQuery } from "../../hooks/usePostsQuery";
 
 function Navbar({ setSearchQuery }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { posts, loading, error } = usePostsQuery(); 
 
   useEffect(() => {
     if (menuOpen) {
@@ -48,10 +46,8 @@ function Navbar({ setSearchQuery }) {
             </Link>
           </li>
 
-          {/* Search bar — faqat postlar yuklanganda */}
-          {!loading && !error && (
-            <SearchBar posts={posts} setSearchQuery={setSearchQuery} />
-          )}
+          {/* Search bar */}
+          <SearchBar setSearchQuery={setSearchQuery} />
         </ul>
 
         <div className="burger-menu" onClick={() => setMenuOpen(true)}>
@@ -62,9 +58,7 @@ function Navbar({ setSearchQuery }) {
       {/* Mobil menyu */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="menu-header">
-          {!loading && !error && (
-            <SearchBar posts={posts} setSearchQuery={setSearchQuery} />
-          )}
+          <SearchBar setSearchQuery={setSearchQuery} />
           <button onClick={() => setMenuOpen(false)} className="close">
             <IoClose />
           </button>

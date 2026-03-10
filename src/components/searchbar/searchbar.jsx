@@ -1,28 +1,42 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoSearchSharp } from "react-icons/io5";
+import { usePostsQuery } from '../../hooks/usePostsQuery';
 
 import './searchbar.scss';
 
-function SearchBar({ posts }) {
+function SearchBar() {
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState([]);
+    const [debouncedQuery, setDebouncedQuery] = useState('');
+    const navigate = useNavigate();
+
+    // Debounce query
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedQuery(query);
+        }, 500);
+
+        return () => clearTimeout(handler);
+    }, [query]);
+
+    // Fetch results based on debounced query
+    const { posts: results } = usePostsQuery(1, debouncedQuery);
 
     const handleInputChange = (e) => {
-        const value = e.target.value;
-        setQuery(value);
-        if (value.trim() === '') {
-            setResults([]);
-            return;
+        setQuery(e.target.value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (query.trim()) {
+            localStorage.setItem('searchQuery', query.trim());
+            window.dispatchEvent(new CustomEvent('searchChanged'));
+            navigate('/');
         }
-        const filtered = posts.filter(post =>
-            post.title.toLowerCase().includes(value.toLowerCase())
-        );
-        setResults(filtered);
     };
 
     return (
-        <form className="search" onSubmit={e => e.preventDefault()}>
+        <form className="search" onSubmit={handleSearchSubmit}>
             <input
                 type="search"
                 placeholder='Qidirish...'
@@ -32,7 +46,7 @@ function SearchBar({ posts }) {
             <button type='submit'>
                 <IoSearchSharp />
             </button>
-            {results.length > 0 && (
+            {query.trim() !== '' && results.length > 0 && (
                 <ul className="search-results">
                     {results.map((post, idx) => (
                         <li key={post.id}>
