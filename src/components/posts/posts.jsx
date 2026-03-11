@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
 import "./posts.scss";
 import { stripHTML } from "../../utils/stripHTML.jsx";
-import { useMemo } from "react";
 
 const Posts = ({
   allPosts = [],
