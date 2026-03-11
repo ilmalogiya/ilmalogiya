@@ -11,7 +11,7 @@ export function useHomeData(page = 1, searchQuery = "", selectedTag = "all") {
     latestPost: null,
   });
 
-  const [seed, setSeed] = useState(() => Math.random().toString());
+  const [seed] = useState(() => Math.random().toString());
   const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
