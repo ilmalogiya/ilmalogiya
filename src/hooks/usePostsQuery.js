@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export function usePostsQuery(page = 1, search = "", tag = "all") {
   const [posts, setPosts] = useState([]);

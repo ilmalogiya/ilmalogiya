@@ -9,7 +9,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const RightPosts = ({ randomPost, lastPost }) => {
   const cleanRandomDesc = stripHTML(randomPost.description || "");
   const cleanLastDesc = stripHTML(lastPost.description || "");
-  const url = process.env.REACT_APP_API_MEDIA_URL;
+  const url = import.meta.env.VITE_API_MEDIA_URL;
 
 
   return (
