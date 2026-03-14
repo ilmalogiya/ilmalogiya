@@ -4,7 +4,7 @@ import ReactGA from "react-ga4";
 import Navbar from "../navbar/navbar";
 import MainSection from "../main-section/main_section";
 import Footer from "../footer/footer";
-// import PostDetail from "../postDetail/postDetail";
+import Iqtiboslar from "../iqtiboslar/iqtiboslar";
 
 function App() {
   const location = useLocation();
@@ -22,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/*" element={<MainSection />} />
         <Route path="/posts/:slug" element={<MainSection />} />
+        <Route path="/iqtiboslar" element={<Iqtiboslar />} />
       </Routes>
       <Footer />
     </div>

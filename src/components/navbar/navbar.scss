@@ -32,6 +32,25 @@ nav {
     display: flex;
     align-items: center;
     gap: 15px;
+
+    li {
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 50px;
+      transition: background-color 0.2s, color 0.2s;
+
+      &:hover {
+        background-color: var(--white);
+        color: var(--accent);
+      }
+    }
   }
 
   .burger-menu {

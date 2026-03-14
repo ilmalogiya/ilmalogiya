@@ -36,6 +36,12 @@ function Navbar() {
 
         <ul className="links">
           <li>
+            <Link to="/" className="nav-link">Maqolalar</Link>
+          </li>
+          <li>
+            <Link to="/iqtiboslar" className="nav-link">Iqtiboslar</Link>
+          </li>
+          <li>
             <Link
               to="https://tirikchilik.uz/ilmalogiya"
               className="donat"
@@ -44,7 +50,6 @@ function Navbar() {
               <PiMoneyDuotone /> Donat qilish
             </Link>
           </li>
-
         </ul>
 
         <div className="burger-menu" onClick={() => setMenuOpen(true)}>
@@ -59,6 +64,15 @@ function Navbar() {
             <IoClose />
           </button>
         </div>
+
+        <ul className="mobile-links">
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Maqolalar</Link>
+          </li>
+          <li>
+            <Link to="/iqtiboslar" onClick={() => setMenuOpen(false)}>Iqtiboslar</Link>
+          </li>
+        </ul>
 
         <div className="menu-footer">
           <Link

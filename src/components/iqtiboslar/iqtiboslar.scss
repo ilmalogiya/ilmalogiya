@@ -1,0 +1,38 @@
+.iqtiboslar-page {
+    margin-top: 125px;
+    padding: 0 100px;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+
+    .container {
+        text-align: center;
+        background-color: var(--white);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+        h1 {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text);
+            font-size: 1.2rem;
+        }
+    }
+}
+
+@media screen and (max-width: 1441px) {
+    .iqtiboslar-page {
+        padding: 0 50px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .iqtiboslar-page {
+        padding: 0 20px;
+    }
+}
