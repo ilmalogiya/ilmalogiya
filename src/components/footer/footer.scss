@@ -1,10 +1,17 @@
 footer{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: var(--text);
     padding: 25px 0;
     p{
         color: var(--background);
+    }
+    span{
+        color: var(--grey);
+        font-size: 0.8rem;
+        margin-top: 5px;
     }
 }
 

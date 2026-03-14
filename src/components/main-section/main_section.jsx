@@ -38,7 +38,7 @@ const MainSection = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTag, setSelectedTag] = useState("all");
+  const [selectedTags, setSelectedTags] = useState([]);
 
   // Search bar state
   const [inputValue, setInputValue] = useState("");
@@ -64,7 +64,7 @@ const MainSection = () => {
     pagination,
     loading: homeLoading,
     error: homeError,
-  } = useHomeData(currentPage, searchQuery, selectedTag);
+  } = useHomeData(currentPage, searchQuery, selectedTags);
 
   const {
     post: detailedPost,
@@ -96,9 +96,26 @@ const MainSection = () => {
 
   const handleTagChange = useCallback(
     (tag) => {
-      setSelectedTag(tag);
+      setSelectedTags((prevTags) => {
+        if (tag === "all") {
+          return [];
+        }
+        
+        let newTags;
+        if (prevTags.includes(tag)) {
+          newTags = prevTags.filter((t) => t !== tag);
+        } else {
+          if (prevTags.length >= 3) {
+            newTags = prevTags; // Maximum 3 tags allowed
+            // Optionally, we could show a toast here. For now, just ignore adding more.
+          } else {
+            newTags = [...prevTags, tag];
+          }
+        }
+        return newTags;
+      });
       setCurrentPage(1);
-      setDrawerOpen(false);
+      // Removed setDrawerOpen(false) to allow selecting multiple tags without closing
       navigate("/");
     },
     [navigate]
@@ -149,22 +166,31 @@ const MainSection = () => {
               </form>
 
               <button
-                className={`filter-btn ${selectedTag !== "all" ? "active" : ""}`}
-                onClick={() => setDrawerOpen(true)}
-                title="Teglar bo' filter"
+                className={`filter-btn ${selectedTags.length > 0 ? "active" : ""}`}
+                onClick={() => setDrawerOpen((prev) => !prev)}
+                title="Teglar bo'yicha filter"
               >
                 <LuSlidersHorizontal />
-                {selectedTag !== "all" && (
-                  <span className="filter-badge">1</span>
+                {selectedTags.length > 0 && (
+                  <span className="filter-badge">{selectedTags.length}</span>
                 )}
               </button>
             </div>
 
             {/* Active tag indicator */}
-            {selectedTag !== "all" && (
+            {selectedTags.length > 0 && (
               <div className="active-tag-indicator">
-                <span>
-                  Teg: <strong>{selectedTag}</strong>
+                <span style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                  Teglar: 
+                  {selectedTags.map((t) => (
+                    <strong key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: 'var(--background)', padding: '2px 8px', borderRadius: '50px' }}>
+                      {t}
+                      <IoClose 
+                        style={{ cursor: 'pointer' }} 
+                        onClick={(e) => { e.stopPropagation(); handleTagChange(t); }} 
+                      />
+                    </strong>
+                  ))}
                 </span>
                 <button onClick={() => handleTagChange("all")}>
                   <IoClose /> Tozalash
@@ -211,8 +237,8 @@ const MainSection = () => {
         </div>
         <div className="drawer-tags">
           <button
-            className={`drawer-tag-btn ${selectedTag === "all" ? "active" : ""}`}
-            onClick={() => handleTagChange("all")}
+            className={`drawer-tag-btn ${selectedTags.length === 0 ? "active" : ""}`}
+            onClick={() => { handleTagChange("all"); setDrawerOpen(false); }}
           >
             Hammasi
           </button>
@@ -220,7 +246,7 @@ const MainSection = () => {
             safeTags.map((tag) => (
               <button
                 key={tag.id}
-                className={`drawer-tag-btn ${selectedTag === tag.name ? "active" : ""}`}
+                className={`drawer-tag-btn ${selectedTags.includes(tag.name) ? "active" : ""}`}
                 onClick={() => handleTagChange(tag.name)}
               >
                 {tag.name}
