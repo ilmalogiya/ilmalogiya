@@ -2,12 +2,11 @@ import "./navbar.scss";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.webp";
 import { PiMoneyDuotone } from "react-icons/pi";
-import SearchBar from "../searchbar/searchbar.jsx";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { useState, useEffect } from "react";
 
-function Navbar({ setSearchQuery }) {
+function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -46,8 +45,6 @@ function Navbar({ setSearchQuery }) {
             </Link>
           </li>
 
-          {/* Search bar */}
-          <SearchBar setSearchQuery={setSearchQuery} />
         </ul>
 
         <div className="burger-menu" onClick={() => setMenuOpen(true)}>
@@ -58,7 +55,6 @@ function Navbar({ setSearchQuery }) {
       {/* Mobil menyu */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="menu-header">
-          <SearchBar setSearchQuery={setSearchQuery} />
           <button onClick={() => setMenuOpen(false)} className="close">
             <IoClose />
           </button>
