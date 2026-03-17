@@ -4,6 +4,8 @@ import logo from "../../assets/logo.webp";
 import { PiMoneyDuotone } from "react-icons/pi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
+import { MdOutlineArticle } from "react-icons/md";
+import { FaQuoteRight } from "react-icons/fa";
 import { useState, useEffect } from "react";
 
 function Navbar() {
@@ -60,6 +62,7 @@ function Navbar() {
       {/* Mobil menyu */}
       <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
         <div className="menu-header">
+          <h3>Bo'limlar</h3>
           <button onClick={() => setMenuOpen(false)} className="close">
             <IoClose />
           </button>
@@ -67,10 +70,14 @@ function Navbar() {
 
         <ul className="mobile-links">
           <li>
-            <Link to="/" onClick={() => setMenuOpen(false)}>Maqolalar</Link>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              <MdOutlineArticle /> Maqolalar
+            </Link>
           </li>
           <li>
-            <Link to="/iqtiboslar" onClick={() => setMenuOpen(false)}>Iqtiboslar</Link>
+            <Link to="/iqtiboslar" onClick={() => setMenuOpen(false)}>
+              <FaQuoteRight /> Iqtiboslar
+            </Link>
           </li>
         </ul>
 

@@ -51,6 +51,19 @@ const RightPosts = ({ randomPost, lastPost }) => {
             <img src={url + randomPost.file} alt={randomPost.title} />
           </div>
         )}
+        <div className="post_tags">
+          {randomPost.tags?.map((tag) => (
+            <button
+              key={tag}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleTagClick?.(tag);
+              }}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
         <div className="title">
           <Link to={`/posts/${randomPost.slug}`}>
             <h3>{randomPost.title}</h3>
@@ -79,6 +92,19 @@ const RightPosts = ({ randomPost, lastPost }) => {
             <img src={url + lastPost.file} alt={lastPost.title} />
           </div>
         )}
+        <div className="post_tags">
+          {lastPost.tags?.map((tag) => (
+            <button
+              key={tag}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleTagClick?.(tag);
+              }}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
         <div className="title">
           <Link to={`/posts/${lastPost.slug}`}>
             <h3>{lastPost.title}</h3>

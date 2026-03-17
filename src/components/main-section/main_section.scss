@@ -24,9 +24,9 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 18px;
+  position: relative;
 
   .search-form {
-    position: relative;
     display: flex;
     align-items: center;
     flex: 1;
@@ -52,7 +52,7 @@
       position: absolute;
       top: calc(100% + 8px);
       left: 0;
-      right: 50px;
+      width: 100%;
       background-color: var(--white);
       border: 1px solid var(--grey);
       border-radius: 12px;
@@ -74,11 +74,14 @@
         a {
           color: var(--text);
           font-size: 14px;
-          white-space: nowrap;
+          display: -webkit-box;
+          line-clamp: 2;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
-          display: block;
           transition: color 0.2s;
+          line-height: 1.4;
 
           .idx {
             color: var(--grey);
