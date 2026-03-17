@@ -38,10 +38,16 @@ function Navbar() {
 
         <ul className="links">
           <li>
-            <Link to="/" className="nav-link">Maqolalar</Link>
+            <Link to="/" className="nav-link">
+              <MdOutlineArticle />
+              Maqolalar
+            </Link>
           </li>
           <li>
-            <Link to="/iqtiboslar" className="nav-link">Iqtiboslar</Link>
+            <Link to="/iqtiboslar" className="nav-link">
+              <FaQuoteRight />
+              Iqtiboslar
+            </Link>
           </li>
           <li>
             <Link

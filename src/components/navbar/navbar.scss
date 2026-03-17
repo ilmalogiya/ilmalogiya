@@ -45,10 +45,14 @@ nav {
       border-radius: 50px;
       background-color: var(--white);
       color: var(--accent);
-      border: 1px solid var(--accent);
+      border: 1px solid var(--grey);
       transition: background-color 0.2s, color 0.2s;
-
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      
       &:hover {
+        border: 1px solid var(--accent);
         background-color: var(--accent);
         color: var(--white);
       }

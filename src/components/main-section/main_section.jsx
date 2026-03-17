@@ -11,8 +11,6 @@ import Pagination from "../pagination/pagination";
 import RightPosts from "../rightPosts/rightposts";
 import Loader from "../loader/loader";
 import Postloading from "../postloading/postloading.jsx";
-import { MdOutlineArticle } from "react-icons/md";
-import { FaQuoteRight } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { LuSlidersHorizontal } from "react-icons/lu";
 import { usePostsQuery } from "../../hooks/usePostsQuery";
