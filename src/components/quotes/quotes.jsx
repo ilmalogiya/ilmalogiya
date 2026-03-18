@@ -1,8 +1,8 @@
-import "./iqtiboslar.scss";
+import "./quotes.scss";
 
-const Iqtiboslar = () => {
+const Quotes = () => {
     return (
-        <section className="iqtiboslar-page">
+        <section className="quotes-page">
             <div className="container">
                 <h1>Iqtiboslar</h1>
                 <p>Tez orada...</p>
@@ -11,4 +11,4 @@ const Iqtiboslar = () => {
     );
 };
 
-export default Iqtiboslar;
+export default Quotes;

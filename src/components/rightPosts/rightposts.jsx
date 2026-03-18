@@ -26,7 +26,7 @@ const RightPosts = ({ randomPost, lastPost }) => {
         </div>
         <div className="link">
           <a
-            href="https://t.me/ilmalogiya"
+            href="https://t.me/+26yhVjOr9M0wMDli"
             target="_blank"
             rel="noopener noreferrer"
           >
