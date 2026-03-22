@@ -7,8 +7,8 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const RightPosts = ({ randomPost, lastPost }) => {
-  const cleanRandomDesc = stripHTML(randomPost.description || "");
-  const cleanLastDesc = stripHTML(lastPost.description || "");
+  const cleanRandomDesc = stripHTML(randomPost?.description || "");
+  const cleanLastDesc = stripHTML(lastPost?.description || "");
   const url = import.meta.env.VITE_API_MEDIA_URL;
 
 
@@ -42,87 +42,91 @@ const RightPosts = ({ randomPost, lastPost }) => {
         </div>
       </div>
 
-      <div className="randompost shadow-elegant">
-        <div className="top">
-          <h2>Random Post</h2>
-        </div>
-        {randomPost.file && (
-          <div className="img">
-            <img src={url + randomPost.file} alt={randomPost.title} />
+      {randomPost && (
+        <div className="randompost shadow-elegant">
+          <div className="top">
+            <h2>Random Post</h2>
           </div>
-        )}
-        <div className="post_tags">
-          {randomPost.tags?.map((tag) => (
-            <button
-              key={tag}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleTagClick?.(tag);
-              }}
-            >
-              {tag}
-            </button>
-          ))}
+          {randomPost.file && (
+            <div className="img">
+              <img src={url + randomPost.file} alt={randomPost.title} />
+            </div>
+          )}
+          <div className="post_tags">
+            {randomPost.tags?.map((tag) => (
+              <button
+                key={tag}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleTagClick?.(tag);
+                }}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+          <div className="title">
+            <Link to={`/posts/${randomPost.slug}`}>
+              <h3>{randomPost.title}</h3>
+            </Link>
+          </div>
+          <div className="text">
+            <p>
+              {cleanRandomDesc.length > 200
+                ? cleanRandomDesc.slice(0, 200) + "..."
+                : cleanRandomDesc}
+            </p>
+          </div>
+          <div className="post_link">
+            <Link to={`/posts/${randomPost.slug}`}>
+              To'liq o'qish <FaArrowRightLong />
+            </Link>
+          </div>
         </div>
-        <div className="title">
-          <Link to={`/posts/${randomPost.slug}`}>
-            <h3>{randomPost.title}</h3>
-          </Link>
-        </div>
-        <div className="text">
-          <p>
-            {cleanRandomDesc.length > 200
-              ? cleanRandomDesc.slice(0, 200) + "..."
-              : cleanRandomDesc}
-          </p>
-        </div>
-        <div className="post_link">
-          <Link to={`/posts/${randomPost.slug}`}>
-            To'liq o'qish <FaArrowRightLong />
-          </Link>
-        </div>
-      </div>
+      )}
 
-      <div className="lastpost shadow-elegant">
-        <div className="top">
-          <h2>Oxirgi Post</h2>
-        </div>
-        {lastPost.file && (
-          <div className="img">
-            <img src={url + lastPost.file} alt={lastPost.title} />
+      {lastPost && (
+        <div className="lastpost shadow-elegant">
+          <div className="top">
+            <h2>Oxirgi Post</h2>
           </div>
-        )}
-        <div className="post_tags">
-          {lastPost.tags?.map((tag) => (
-            <button
-              key={tag}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleTagClick?.(tag);
-              }}
-            >
-              {tag}
-            </button>
-          ))}
+          {lastPost.file && (
+            <div className="img">
+              <img src={url + lastPost.file} alt={lastPost.title} />
+            </div>
+          )}
+          <div className="post_tags">
+            {lastPost.tags?.map((tag) => (
+              <button
+                key={tag}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleTagClick?.(tag);
+                }}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+          <div className="title">
+            <Link to={`/posts/${lastPost.slug}`}>
+              <h3>{lastPost.title}</h3>
+            </Link>
+          </div>
+          <div className="text">
+            <p>
+              {cleanLastDesc.length > 200
+                ? cleanLastDesc.slice(0, 200) + "..."
+                : cleanLastDesc}
+            </p>
+          </div>
+          <div className="post_link">
+            <Link to={`/posts/${lastPost.slug}`}>
+              To'liq o'qish <FaArrowRightLong />
+            </Link>
+          </div>
         </div>
-        <div className="title">
-          <Link to={`/posts/${lastPost.slug}`}>
-            <h3>{lastPost.title}</h3>
-          </Link>
-        </div>
-        <div className="text">
-          <p>
-            {cleanLastDesc.length > 200
-              ? cleanLastDesc.slice(0, 200) + "..."
-              : cleanLastDesc}
-          </p>
-        </div>
-        <div className="post_link">
-          <Link to={`/posts/${lastPost.slug}`}>
-            To'liq o'qish <FaArrowRightLong />
-          </Link>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -138,7 +138,6 @@ const MainSection = () => {
           )
         ) : (
           <>
-            {/* Search + Filter bar */}
             <div className="search-filter-bar">
               <form className="search-form" onSubmit={handleSearchSubmit}>
                 <input

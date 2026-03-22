@@ -44,7 +44,7 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/iqtiboslar" className="nav-link">
+            <Link to="/quotes" className="nav-link">
               <FaQuoteRight />
               Iqtiboslar
             </Link>
