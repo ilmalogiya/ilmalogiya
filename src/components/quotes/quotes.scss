@@ -1,0 +1,119 @@
+.quotes-page {
+    margin-top: 125px;
+    padding: 0 100px;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+
+    .left {
+        .quotes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .quotes-card {
+                width: 100%;
+                padding: 2rem;
+                // max-height: 200px;
+                background-color: var(--white);
+                border-radius: 15px;
+                display: flex;
+                gap: 1.5rem;
+
+                .quotes-left{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .quotes-left img {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+
+                .quotes-right {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 12px;
+
+                    q {
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                        color: var(--black);
+                        line-height: 1.5;
+                        font-style: italic;
+                        font-family: "PT Serif", serif;
+                        font-weight: 600;
+                        color: var(--accent);
+                        cursor: pointer ;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    p {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        font-family: var(--open-sans);
+                        font-weight: 600;
+                        color: rgb(120, 120, 120);
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1441px) {
+    .quotes-page {
+        padding: 0 50px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .quotes-page {
+        padding: 0 20px;
+
+        .left {
+            .quotes-list {
+                gap: 20px;
+
+                .quotes-card {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    padding: 1.5rem;
+                    gap: 1rem;
+
+                    .quotes-left img {
+                        width: 90px;
+                        height: 90px;
+                    }
+
+                    .quotes-right {
+                        align-items: center;
+                        gap: 10px;
+
+                        .post_tags {
+                            justify-content: center;
+                        }
+
+                        q {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

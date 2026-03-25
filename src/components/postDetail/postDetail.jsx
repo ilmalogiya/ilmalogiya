@@ -1,13 +1,48 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MdOutlineDateRange } from "react-icons/md";
-import { FaRegEdit, FaRegEye } from "react-icons/fa";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { IoClose } from "react-icons/io5";
+import { FaRegEdit, FaRegEye, FaTelegramPlane, FaFacebookF, FaShareAlt, FaCheck } from "react-icons/fa";
+import { FaArrowLeftLong, FaXTwitter } from "react-icons/fa6";
+import { IoClose, IoLinkOutline } from "react-icons/io5";
 import "./postDetail.scss";
 
 const PostDetail = ({ post }) => {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const pageUrl = window.location.href;
+  const pageTitle = post?.title || "Ilmalogiya";
+
+  const shareItems = [
+    {
+      id: "telegram",
+      label: "Telegram",
+      icon: <FaTelegramPlane />,
+      color: "#26A5E4",
+      href: `https://t.me/share/url?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}`,
+    },
+    {
+      id: "twitter",
+      label: "X (Twitter)",
+      icon: <FaXTwitter />,
+      color: "#000",
+      href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(pageTitle)}`,
+    },
+    {
+      id: "facebook",
+      label: "Facebook",
+      icon: <FaFacebookF />,
+      color: "#1877F2",
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`,
+    },
+  ];
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(pageUrl).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -99,17 +134,52 @@ const PostDetail = ({ post }) => {
           </p>
         </div>
 
+
+
         {/* Tavsif */}
         <div
           className="post-description"
           dangerouslySetInnerHTML={{ __html: post.description }}
         />
 
+        {/* Inline Share tugmalari — post oxirida */}
+        <div className="share-section">
+          <h4>Ulashish</h4>
+          <div className="share-options">
+            {shareItems.map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="share-social-btn"
+                style={{ "--share-color": item.color }}
+                title={item.label}
+              >
+                <span className="share-icon">{item.icon}</span>
+                <span>{item.label}</span>
+              </a>
+            ))}
+
+            <button
+              className={`share-social-btn copy-link-btn ${copied ? "copied" : ""}`}
+              onClick={handleCopyLink}
+              title="Havolani nusxalash"
+            >
+              <span className="share-icon">
+                {copied ? <FaCheck /> : <IoLinkOutline />}
+              </span>
+              <span>{copied ? "Nusxalandi!" : "Havolani nusxalash"}</span>
+            </button>
+          </div>
+        </div>
+
         {/* Orqaga tugmasi */}
         <Link to="/" className="back-btn">
           <FaArrowLeftLong /> Bosh sahifaga qaytish
         </Link>
       </div>
+
 
       {/* Image Modal */}
       {isImageModalOpen && !isVideo && post.file && (

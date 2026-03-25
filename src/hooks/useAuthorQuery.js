@@ -2,29 +2,29 @@ import { useState, useEffect } from "react";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const useGetOneQuery = (slug) => {
-  const [post, setPost] = useState(null);
+export const useAuthorQuery = (slug) => {
+  const [author, setAuthor] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!slug) {
-      setPost(null);
+      setAuthor(null);
       setLoading(false);
       setError(null);
       return;
     }
 
-    const fetchPost = async () => {
+    const fetchAuthor = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(`${BASE_URL}/posts/${slug}/`);
-        if (!res.ok) throw new Error("Post topilmadi");
+        const res = await fetch(`${BASE_URL}/authors/${slug}/`);
+        if (!res.ok) throw new Error("Muallif topilmadi");
 
         const data = await res.json();
-        setPost(data);
+        setAuthor(data);
 
       } catch (err) {
         setError(err.message);
@@ -33,8 +33,8 @@ export const useGetOneQuery = (slug) => {
       }
     };
 
-    fetchPost();
+    fetchAuthor();
   }, [slug]);
 
-  return { post, loading, error };
+  return { author, loading, error };
 };

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export function useHomeData(page = 1, searchQuery = "", selectedTag = "all") {
+export function useHomeData(page = 1, searchQuery = "", selectedTags = []) {
   // Barcha turdagi ma'lumotlar uchun state
   const [data, setData] = useState({
     tags: [],
@@ -27,8 +27,8 @@ export function useHomeData(page = 1, searchQuery = "", selectedTag = "all") {
           url += `&search=${encodeURIComponent(searchQuery)}`;
         }
 
-        if (selectedTag && selectedTag !== "all") {
-          url += `&tag=${encodeURIComponent(selectedTag)}`;
+        if (selectedTags && selectedTags.length > 0) {
+          url += `&tag=${encodeURIComponent(selectedTags.join(","))}`;
         }
 
         const res = await fetch(url);
@@ -61,7 +61,7 @@ export function useHomeData(page = 1, searchQuery = "", selectedTag = "all") {
     };
 
     fetchHomeData();
-  }, [page, seed, searchQuery, selectedTag]); // Parametrlar o'zgarganda qayta chaqiriladi
+  }, [page, seed, searchQuery, selectedTags]); // Parametrlar o'zgarganda qayta chaqiriladi
 
   return {
     tags: data.tags,

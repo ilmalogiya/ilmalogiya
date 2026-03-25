@@ -79,11 +79,69 @@
         }
     }
 
+    // ── Inline Share section ──
+    .share-section {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--grey);
+
+        h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .share-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            .share-social-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 16px;
+                border-radius: 50px;
+                border:  1.5px solid var(--white);
+                background: var(--accent);
+                color: var(--white);
+                font-size: 13px;
+                font-weight: 500;
+                cursor: pointer;
+                text-decoration: none;
+                transition: border-color 0.2s, color 0.2s, background 0.2s;
+
+                .share-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--white);
+                    font-size: 15px;
+                    transition: color 0.2s;
+                }
+
+                &.copy-link-btn {
+                    --share-color: var(--accent);
+                }
+
+                &.copied {
+                    border-color: var(--accent);
+                    color: var(--white);
+                    background: var(--accent);
+
+                    .share-icon {
+                        color: var(--white);
+                    }
+                }
+            }
+        }
+    }
     .back-btn {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        margin-top: 30px;
+        margin-top: 20px;
         color: var(--accent);
         border-radius: 8px;
         font-weight: 500;
@@ -93,6 +151,9 @@
         }
     }
 }
+
+
+
 
 // Image Modal Styles
 .image-modal-overlay {

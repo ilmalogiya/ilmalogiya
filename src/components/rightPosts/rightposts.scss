@@ -37,11 +37,13 @@
         }
 
         h3 {
-            font-family: var(--open-sans);
-            color: var(--text);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin: 10px 0;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
         p {

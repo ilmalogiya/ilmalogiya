@@ -43,14 +43,11 @@ function SearchBar() {
                 value={query}
                 onChange={handleInputChange}
             />
-            <button type='submit'>
-                <IoSearchSharp />
-            </button>
             {query.trim() !== '' && results.length > 0 && (
                 <ul className="search-results">
                     {results.map((post, idx) => (
                         <li key={post.id}>
-                            <Link to={`/posts/${post.id}`}>
+                            <Link to={`/posts/${post.slug}`}>
                                 <p>{idx + 1}. {post.title}</p>
                             </Link>
                         </li>
