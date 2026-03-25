@@ -75,13 +75,45 @@
 }
 
 @media screen and (max-width: 1441px) {
-    .iqtiboslar-page {
+    .quotes-page {
         padding: 0 50px;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .iqtiboslar-page {
+    .quotes-page {
         padding: 0 20px;
+
+        .left {
+            .quotes-list {
+                gap: 20px;
+
+                .quotes-card {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    padding: 1.5rem;
+                    gap: 1rem;
+
+                    .quotes-left img {
+                        width: 90px;
+                        height: 90px;
+                    }
+
+                    .quotes-right {
+                        align-items: center;
+                        gap: 10px;
+
+                        .post_tags {
+                            justify-content: center;
+                        }
+
+                        q {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
