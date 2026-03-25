@@ -6,7 +6,21 @@ import { memo, useState } from "react";
 import { useQuotesPageData } from "../../hooks/useQuotesPageData";
 
 import QuotesCards from "./elements/quotes_cards";
+import QuotesLoading from "./elements/quotesLoading";
 import RightPosts from "../rightPosts/rightposts";
+
+const onLoad = () => (
+    <div className="onload rightposts">
+        <div className="onload-telegram telegram">
+            <div className="h2"></div><p></p><p className="p"></p><div className="link"></div>
+        </div>
+        {[1, 2].map((i) => (
+            <div key={i} className="randompost">
+                <div className="h2"></div><div className="img"></div><div className="title"></div><p></p><p></p><p className="p"></p>
+            </div>
+        ))}
+    </div>
+);
 
 const MemoizedRightPosts = memo(RightPosts);
 
@@ -78,13 +92,13 @@ const Quotes = () => {
                     {selectedTags.length > 0 && (
                         <div className="active-tag-indicator">
                             <span style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-                                Teglar: 
+                                Teglar:
                                 {selectedTags.map((t) => (
                                     <strong key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: 'var(--background)', padding: '2px 8px', borderRadius: '50px' }}>
                                         {t}
-                                        <IoClose 
-                                            style={{ cursor: 'pointer' }} 
-                                            onClick={(e) => { e.stopPropagation(); handleTagChange(t); }} 
+                                        <IoClose
+                                            style={{ cursor: 'pointer' }}
+                                            onClick={(e) => { e.stopPropagation(); handleTagChange(t); }}
                                         />
                                     </strong>
                                 ))}
@@ -96,10 +110,14 @@ const Quotes = () => {
                     )}
                 </div>
 
-                <QuotesCards quotes={quotes}/>
+                <QuotesCards quotes={quotes} />
             </div>
             <div className="right">
-                <MemoizedRightPosts randomPost={randomPost} lastPost={latestPost} />
+                {homeLoading ? (
+                    <div className="text-center py-8">{onLoad()}</div>
+                ) : (
+                    <MemoizedRightPosts randomPost={randomPost} lastPost={latestPost} />
+                )}
             </div>
 
             {/* Filter Drawer */}
