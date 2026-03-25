@@ -1,49 +1,43 @@
-import auther_img from "../../../assets/Dostoevsky.jpg"
 import { FaRegCopyright } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const QuotesCards = () => {
+const QuotesCards = ({quotes}) => {
+    if (!quotes || quotes.length === 0) {
+        return <div className="no-quotes">Ma'lumot topilmadi</div>;
+    }
 
-    const quotes = [
-        {
-            id: 1,
-            quote: "Mahbusni qochib ketishdan oldini olishni eng yaxshi yo'li bu uni mahbus emasligiga ishontirishdir.",
-            author: "Fyodor Dostoevskiy",
-            tags: ["Siyosat", "Falsafa"],
-        },
-        {
-            id: 2,
-            quote: "Mahbusni qochib ketishdan oldini olishni eng yaxshi yo'li bu uni mahbus emasligiga ishontirishdir.",
-            author: "Fyodor Dostoevskiy",
-            tags: ["Siyosat", "Falsafa"],
-        },
-        {
-            id: 3,
-            quote: "Mahbusni qochib ketishdan oldini olishni eng yaxshi yo'li bu uni mahbus emasligiga ishontirishdir.",
-            author: "Fyodor Dostoevskiy",
-            tags: ["Siyosat", "Falsafa"],
-        },
-    ]
+    const url = import.meta.env.VITE_API_MEDIA_URL;
 
+    console.log(quotes)
     return (
         <div className="quotes-list">
-            {quotes.map((quote) => (
+            {quotes.map((quote) =>{
+
+                return (
                 <div key={quote.id} className="quotes-card shadow-elegant">
                     <div className="quotes-left">
-                        <img src={auther_img} alt="" />
+                        <img src={quote.author_photo} alt={quote.author_name} />
                     </div>
                     <div className="quotes-right">
                         <div className="post_tags">
-                            {quote.tags.map((tag) => (
+                            {quote.tags && quote.tags.map((tag) => (
                                 <button key={tag}>
                                     {tag}
                                 </button>
                             ))}
                         </div>
-                        <q>{quote.quote}</q>
-                        <p><FaRegCopyright /><a href="">{quote.author}</a></p>
+                        <Link to={`/quotes/${quote.slug}`}>
+                            <q>{quote.text}</q>
+                        </Link>
+                        <p>
+                            <FaRegCopyright />
+                            <Link to={`/quotes/author/${quote.author_slug}`}>
+                                {quote.author_name}
+                            </Link>
+                        </p>
                     </div>
                 </div>
-            ))}
+            )})}
         </div>
     );
 };
