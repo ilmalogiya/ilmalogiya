@@ -26,12 +26,12 @@ const QuotesCards = ({quotes}) => {
                                 </button>
                             ))}
                         </div>
-                        <Link to={`/quotes/${quote.slug}`}>
+                        <Link to={`#`}>
                             <q>{quote.text}</q>
                         </Link>
                         <p>
                             <FaRegCopyright />
-                            <Link to={`/quotes/author/${quote.author_slug}`}>
+                            <Link to={`#`}>
                                 {quote.author_name}
                             </Link>
                         </p>
